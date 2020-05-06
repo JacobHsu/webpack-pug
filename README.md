@@ -7,7 +7,7 @@
 
 `$ yarn add -D html-webpack-plugin`  
 
-`$ yarn add -D pug html-loader pug-html-loader`  
+`$ yarn add -D html-loader pug-html-loader`  
 
 `$ yarn add -D gh-pages`
 
