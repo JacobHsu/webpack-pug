@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     mode: 'development',
@@ -9,9 +10,14 @@ module.exports = {
         filename: '[name].js'
     },
     module: {   
-        rules: [{
+        rules: [
+            {
                 test: /\.pug$/,
                 use: ['html-loader','pug-html-loader']
+            },
+            {
+                test: /\.(sass|scss)$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader','sass-loader']
             }
         ]
     },
@@ -20,6 +26,10 @@ module.exports = {
             template: './src/index.pug',
             // 輸出的文件名稱，要注意的是這邊的root path是module.exports.output.path (在這個project內就是build folder)
             filename:'./index.html'
+        }),
+        new MiniCssExtractPlugin({
+            filename: '[name].css',
+            chunkFilename: '[id].css',
         })
     ],
     watch: true,
